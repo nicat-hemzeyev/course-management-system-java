@@ -3,7 +3,6 @@ public class Course {
     String courseName;
     Teacher teacher; //niye arrayiz
     Student[] students;//niye arrayli yazilir
-
     public String getCourseID() {
         return courseID;
     }
