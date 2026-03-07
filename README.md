@@ -1,1 +1,1 @@
-# console-based-course-management-system
+# console-based-coursemanagement.course-management-system

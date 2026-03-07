@@ -1,9 +1,11 @@
+package coursemanagement.commond;
+
 public class User {
-    String Id;
-    String name;
-    String surname;
-    String email;
-    String getRole(){
+   private String Id;
+   private String name;
+   private String surname;
+   private String email;
+   private String getRole(){
         return "USER";
     }
 
@@ -38,4 +40,4 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-}
+    }

@@ -1,3 +1,7 @@
+package coursemanagement.course.entity;
+import coursemanagement.student.entity.Student;
+import coursemanagement.teacher.entity.Teacher;
+
 public class Course {
     String courseID;
     String courseName;

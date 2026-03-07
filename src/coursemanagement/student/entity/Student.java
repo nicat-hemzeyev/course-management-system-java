@@ -1,8 +1,14 @@
+package coursemanagement.student.entity;
+
+import coursemanagement.commond.User;
+
 public class Student extends User {
-    char grade;
-    String getRole(){
+    private char grade;
+
+    String getRole() {
         return "STUDENT";
     }
+
     public char getGrade() {
         return grade;
     }
@@ -10,4 +16,5 @@ public class Student extends User {
     public void setGrade(char grade) {
         this.grade = grade;
     }
+
 }
