@@ -18,4 +18,13 @@ public class Teacher extends User {
     public void setSalary(int salary) {
         this.salary = salary;
     }
+@Override
+    public String toString() {
+    System.out.print("Teacher ");
+        return " name: " + getName() + "," +
+                " surname: " + getSurname() + "," +
+                " age: " + getAge() + "," +
+                " email: " + getEmail() + "," +
+                " salary: " + getSalary() + ",";
+    }
 }
