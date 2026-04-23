@@ -4,7 +4,9 @@ import coursemanagement.commond.User;
 
 public class Teacher extends User {
     private int salary;
+public Teacher(){
 
+}
     public Teacher(String name, String surname,int age, String email, int salary) {
         super(name, surname,age,email);
         this.salary = salary;

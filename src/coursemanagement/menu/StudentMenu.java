@@ -5,18 +5,16 @@ import coursemanagement.student.service.StudentService;
 import java.util.Scanner;
 
 public class StudentMenu {
-
     public static void studentMenu() {
+        StudentService service =new StudentService();
         while (true) {
             System.out.println(
                     "------ TELEBE MENU ------\n" +
                             "Edeceyiniz emeliyyati secin:\n" +
-                            "1.ilkin qeydiyyat\n" +
-                            "2.yenisini elave etmek\n" +
-                            "3.yenilemek(update)\n" +
-                            "4.silmek\n" +
-                            "5.axtarmaq\n" +
-                            "6.hamisini gormek\n" +
+                            "1.Telebe elave et\n" +
+                            "2.Telebeleri goster\n" +
+                            "3.Telebeni yenile\n" +
+                            "4.Telebeni sil\n" +
                             "0.Geri don"
             );
             int emeliyyat = new Scanner(System.in).nextInt();
@@ -25,25 +23,19 @@ public class StudentMenu {
                     MainMenu.mainMenu();
                     break;
                 case 1:
-                    StudentService.newStudent();
+                    service.addStudent();
                     break;
                 case 2:
-                    StudentService.newAddStudent();
+                    service.listStudent();
                     break;
                 case 3:
-                    StudentService.update();
+                    service.updateStudent();
                     break;
                 case 4:
-                    StudentService.delete();
-                    break;
-                case 5:
-                    StudentService.find();
-                    break;
-                case 6:
-                    StudentService.printAll();
+                    service.deleteStudent();
                     break;
                 default:
-                    System.out.println("Sechim yanlisdir");
+                    System.out.println("Seçim yanlışdır");
 
             }
         }

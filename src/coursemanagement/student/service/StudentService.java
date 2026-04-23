@@ -1,38 +1,95 @@
 package coursemanagement.student.service;
 
-import coursemanagement.commond.Db;
+import coursemanagement.dao.StudentDAO;
 import coursemanagement.student.entity.Student;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class StudentService {
+    StudentDAO studentDAO = new StudentDAO();
 
-    public static void newStudent() {
+    public void addStudent() {
         System.out.println("Nece telebe qeydiyyatdan kecirmek isteyirsiz: ");
         int number = new Scanner(System.in).nextInt();
         Student[] newStudents = new Student[number];
         for (int i = 0; i < newStudents.length; i++) {
             System.out.println("qeydiyyat " + (i + 1) + ".");
             newStudents[i] = requireAndCreate();
-        }
-        System.out.println();
-        Db.students = newStudents;
-    }
-
-    public static void newAddStudent() {
-        Student[] oldStudent = Db.students;
-        System.out.println("nece telebe elave etmek isteyirsiz?");
-        int number = new Scanner(System.in).nextInt();
-        Student[] newStudents = new Student[oldStudent.length + number];
-        for (int i = 0; i < oldStudent.length; i++) {
-            newStudents[i] = oldStudent[i];
-        }
-        for (int j = oldStudent.length; j < newStudents.length; j++) {
-            newStudents[j] = requireAndCreate();
+            studentDAO.addStudent(newStudents[i]);
         }
     }
 
-    public static Student requireAndCreate() {
+    public void listStudent() {
+        List<Student> students = studentDAO.listStudent();
+        for (Student s : students) {
+            System.out.println(s.getId() + " " + s.getName() + " " + s.getSurname() + " " + s.getAge());
+        }
+    }
+
+    public void updateStudent() {
+        Scanner sc = new Scanner(System.in);
+        List<Student> students = studentDAO.listStudent();
+        if (students == null)
+            System.out.println("Mövcud tələbə yoxdur!");
+        for (Student s : students) {
+            System.out.println(s.getId() + " " + s.getName() + " " + s.getSurname() + " " + s.getAge());
+        }
+
+        System.out.println("Hansı ID-li tələbəni yeniləmək istəyirsiniz?");
+        int id = sc.nextInt();
+        sc.nextLine();
+        Student existing = studentDAO.findById(id);
+        if (existing == null) {
+            System.out.println("Bu ID-li tələbə yoxdur!");
+            return;
+        }
+        System.out.println("Hansı məlumatı yeniləmək istəyirsiniz? (name, surname, age, email)");
+        String field = sc.nextLine();
+        switch (field) {
+            case "name":
+                System.out.println("Yeni adı daxil edin:");
+                existing.setName(sc.nextLine());
+                break;
+            case "surname":
+                System.out.println("Yeni soyadı daxil edin:");
+                existing.setSurname(sc.nextLine());
+                break;
+            case "age":
+                System.out.println("Yeni yaşı daxil edin:");
+                existing.setAge(sc.nextInt());
+                sc.nextLine();
+                break;
+            case "email":
+                System.out.println("Yeni emaili daxil edin:");
+                existing.setEmail(sc.nextLine());
+                break;
+            default:
+                System.out.println("Yanlış seçim");
+                return;
+        }
+        studentDAO.updateStudent(existing);
+    }
+
+    public void deleteStudent() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Hansı ID-li telebeni silmek isteyirsiz?");
+        List<Student> students = studentDAO.listStudent();
+        if (students == null) {
+            System.out.println("Mövcud tələbə yoxdur!");
+            return;
+        }
+        for (Student s : students) {
+            System.out.println(s.getId() + " " + s.getName() + " " + s.getSurname() + " " + s.getAge());
+        }
+        int id = sc.nextInt();
+        studentDAO.deleteStudent(id);
+        System.out.println("Tələbə silindi!");
+
+
+    }
+
+    public Student requireAndCreate() {
         System.out.println("Telebenin adini daxil edin: ");
         String name = new Scanner(System.in).nextLine();
         System.out.println("Telebenin soyadini daxil edin: ");
@@ -42,56 +99,6 @@ public class StudentService {
         System.out.println("Telebenin emailini daxil edin: ");
         String email = new Scanner(System.in).nextLine();
         return new Student(name, surname, age, email);
-
-    }
-
-    public static void update() {
-        Student[] students = Db.students;
-        System.out.println("Hansi telebeni yenilemek etmek isteyirsiz:");
-        int updateIndex = new Scanner(System.in).nextInt();
-        Student student = students[updateIndex - 1];
-        System.out.println("hansi xanani update etmek isteyirsen name,surname,age");
-        String updateField = new Scanner(System.in).nextLine();
-        if (updateField.equals("name")) {
-            System.out.println("adini daxil edin:");
-            student.setName(new Scanner(System.in).nextLine());
-        } else if (updateField.equals("surname")) {
-            System.out.println("soyadini daxil edin:");
-            student.setSurname(new Scanner(System.in).nextLine());
-        } else if (updateField.equals("age")) {
-            System.out.println("adini daxil edin:");
-            student.setAge(new Scanner(System.in).nextInt());
-        }
-    }
-
-    public static void delete() {
-        Student[] students=Db.students;
-        System.out.println("Nece nomreli telebeni silmek isteyirsiz:");
-        int number = new Scanner(System.in).nextInt();
-        students[number - 1] = null;
-        System.out.println("telebe silindi");
-    }
-
-    public static void find() {
-        Student[] students = Db.students;
-        System.out.println("axtarmaq istediyiniz telebenin adini ve soyadini daxil edin:");
-        String text = new Scanner(System.in).nextLine();
-        for (int i = 0; i < students.length; i++) {
-            Student t = students[i];
-            if (t == null) continue;
-            if (t.getName().equals(text) || t.getSurname().equals(text)) {
-                System.out.println(t);
-            }
-        }
-    }
-
-    public static void printAll() {
-        Student[] students = Db.students;
-        System.out.println("Qeydiyyatdan kechen telebeler:");
-        for (int i = 0; i < students.length; i++) {
-            if (students[i] == null) continue;
-            System.out.println((i + 1) + "." + students[i]);
-        }
 
     }
 }

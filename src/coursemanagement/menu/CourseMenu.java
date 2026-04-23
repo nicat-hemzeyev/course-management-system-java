@@ -6,15 +6,17 @@ import java.util.Scanner;
 
 public class CourseMenu {
     public static void courseMenu() {
+        CourseService service=new CourseService();
         while (true) {
 
             System.out.println("------KURS MENU------\n" +
                     "Edeceyiniz emeliyyati secin:\n" +
                     "1.Kurs elave et\n" +
                     "2.Kurslari goster\n" +
-                    "3.Kursa telebe elave et\n" +
-                    "4.Kursa muellim teyin et\n" +
-                    "5.Kursu sil\n" +
+                    "3.Kursu yenile\n" +
+                    "4.Kursu sil\n" +
+                    "5.Muellimi kursa teyin et\n" +
+                    "6.Telebeni kursa teyin et\n" +
                     "0.Geri don"
             );
             int emeliyyat = new Scanner(System.in).nextInt();
@@ -23,22 +25,25 @@ public class CourseMenu {
                     MainMenu.mainMenu();
                     break;
                 case 1:
-                    CourseService.addCourse();
+                    service.addCourse();
                     break;
                 case 2:
-                    CourseService.listCourse();
+                  service.listCourse();
                     break;
                 case 3:
-                    CourseService.addStudentToCourse();
+                    service.updateCourse();
                     break;
                 case 4:
-                    CourseService.assignTeacherToCourse();
+                    service.deleteCourse();
                     break;
                 case 5:
-                    CourseService.removeCourse();
+                   service.addTeacherToCourse();
+                    break;
+                case 6:
+                  service.addStudentToCourse();
                     break;
                 default:
-                    System.out.println("Yanlis sechim");
+                    System.out.println("Seçim yanlışdır");
             }
 
         }

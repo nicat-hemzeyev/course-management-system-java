@@ -5,12 +5,12 @@ import java.util.Scanner;
 public class MainMenu {
     public static void mainMenu(){
         System.out.println(
-                "---ESAS MENU---\n" +
-                "Seciminizi edin:\n"+
-                "1.Kurs menusu\n"+
-                "2.Muellim menusu\n"+
-                "3.Telebe menusu\n"+
-                "0.Cixis"
+                "---ƏSAS MENU---\n" +
+                "Seçiminizi edin:\n"+
+                "1.Kurs menyusu\n"+
+                "2.Müəllim menyusu\n"+
+                "3.Tələbə menyusu\n"+
+                "0.Çıxış"
         );
         int emeliyyat =new Scanner(System.in).nextInt();
         switch (emeliyyat){
@@ -27,7 +27,7 @@ public class MainMenu {
               StudentMenu.studentMenu();
                 break;
             default:
-                System.out.println("Sechim yanlisdir");
+                System.out.println("Seçim yanlışdır");
 
         }
 

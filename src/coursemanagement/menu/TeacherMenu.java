@@ -6,14 +6,15 @@ import java.util.Scanner;
 
 public class TeacherMenu {
     public static void teacherMenu() {
+        TeacherService teacherService =new TeacherService();
         while (true) {
-            System.out.println("------MUELLIM MENU------\n" +
-                    "Edeceyiniz emeliyyati secin:\n" +
-                    "1.Muellim elave et\n" +
-                    "2.Muellimleri goster\n" +
-                    "3.Muellimi kursa teyin et\n" +
-                    "4.Muellimi sil\n" +
-                    "0.Geri don\n"
+            System.out.println("------MÜƏLLIM MENU------\n" +
+                    "Edəcəyiniz əməliyyatı seçin:\n" +
+                    "1.Müəllim əlavə et\n" +
+                    "2.Müəllimləri göstər\n" +
+                    "3.Müəllimi yenilə\n"+
+                    "4.Müəllimi sil\n" +
+                    "0.Geri dön\n"
             );
             int emeliyyat = new Scanner(System.in).nextInt();
             switch (emeliyyat) {
@@ -21,19 +22,19 @@ public class TeacherMenu {
                     MainMenu.mainMenu();
                     break;
                 case 1:
-                    TeacherService.addTeacher();
+                    teacherService.addTeacher();
                     break;
                 case 2:
-                   TeacherService.listTeacher();
+                   teacherService.listTeacher();
                     break;
                 case 3:
-                    TeacherService.assignTeacherToCourse();
+                    teacherService.updateTeacher();
                     break;
                 case 4:
-                    TeacherService.removeTeacher();
+                    teacherService.deleteTeacher();
                     break;
                 default:
-                    System.out.println("sechim yanlisdir");
+                    System.out.println("Seçim yanlışdır");
             }
 
         }

@@ -9,37 +9,13 @@ public class Course {
     String courseName;
     Teacher teacher;
     Student[] students;
-    private Student[] students1;//telebeler ucun massiv
-    private int studentCount; //neche telebe elave olunub
 
-    public Course(int capacity) {
-        students1 = new Student[capacity]; //kursa neche nefer telebe qebul edile biler
-        studentCount = 0;
-    }
-
-    public void addStudent(Student student) {
-        if (studentCount < students1.length) {
-            students1[studentCount] = student;
-            studentCount++;
-            System.out.println("Telebe kursa elave olundu:");
-        } else {
-            System.out.println("Kurs doludur telebe elave etmek olmur!");
-        }
-    }
-    public void listStudent(){
-        for(int i=0;i<studentCount;i++){
-            System.out.println(students1[i]);
-        }
-    }
-
-    public Course(String courseName, int courseId) {
-        this.courseName = courseName;
-        this.courseID = courseId;
+    public Course() {
 
     }
 
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
+    public Course(String name) {
+        this.courseName = name;
     }
 
     public int getCourseID() {
