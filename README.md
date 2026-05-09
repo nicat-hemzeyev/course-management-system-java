@@ -21,14 +21,36 @@ This project demonstrates core backend development skills with **Java SE** and *
 ![IntelliJ IDEA](https://img.shields.io/badge/IntelliJ%20IDEA-000000?style=for-the-badge&logo=intellijidea&logoColor=white)
 
 ---
-
 ## 📂 Project Structure
-src/coursemanagement/     
- ├── Course.java --     # Kursların idarəsi və məlumatları  
- 
- ├── Student.java --    # Tələbələrin idarəsi və məlumatları
- 
- ├── Teacher.java --    # Müəllimlərin idarəsi və məlumatları
- 
- └── Main.java   --     # Proqramın giriş nöqtəsi (main method)
- 
+```markdown
+src/coursemanagement/
+ ├── commond/
+ │    ├── DbConnection.java   # Database bağlantısı
+ │    └── User.java           # Ümumi user modeli
+ │
+ ├── course/
+ │    ├── entity/             # Kurs entity-ləri
+ │    └── service/            # Kurs servisləri
+ │
+ ├── dao/
+ │    ├── CourseDAO.java      # Kurs məlumatları üçün DAO
+ │    ├── StudentDAO.java     # Tələbə məlumatları üçün DAO
+ │    └── TeacherDAO.java     # Müəllim məlumatları üçün DAO
+ │
+ ├── main/
+ │    └── Main.java           # Proqramın giriş nöqtəsi
+ │
+ ├── menu/
+ │    ├── MainMenu.java       # Əsas menyu
+ │    ├── CourseMenu.java     # Kurs əməliyyatları menyusu
+ │    ├── StudentMenu.java    # Tələbə əməliyyatları menyusu
+ │    └── TeacherMenu.java    # Müəllim əməliyyatları menyusu
+ │
+ ├── student/
+ │    ├── entity/             # Student entity-ləri
+ │    └── service/            # Student servisləri
+ │
+ └── teacher/
+      ├── entity/             # Teacher entity-ləri
+      └── service/            # Teacher servisləri
+ ```
