@@ -30,6 +30,8 @@ out/
 .kotlin
 
 .env
+.idea/
+*.iml
 
 
 
