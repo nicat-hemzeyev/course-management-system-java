@@ -1,4 +1,4 @@
-# Console-Based Course Management System
+# Course-management-system-java
 
 A simple **Java console-based application** for managing courses, students, and enrollments.  
 This project demonstrates core backend development skills with **Java SE** and **PostgreSQL** integration.
