@@ -9,7 +9,7 @@ public class Course {
     String courseName;
     Teacher teacher;
     Student[] students;
-//course
+
     public Course() {
 
     }
